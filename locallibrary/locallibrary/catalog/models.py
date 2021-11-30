@@ -2,18 +2,16 @@ from django.db import models
 import uuid
 
 class BookModel(models.Model):
-	title = models.CharField(max_length=200)
-	# TODO Need uncommented when you added AuthorModel table 
-	# author = models.ForeignKey('AuthorModel', on_delete=models.SET_NULL, null=True)
+	title = models.CharField(max_length=200) 
+	author = models.ForeignKey('AuthorModel', on_delete=models.SET_NULL, null=True)
 	summary = models.TextField(max_length=1000, help_text='Краткое содержание книги')
 	isbn = models.CharField('ISBN', max_length=13, unique=True)
-	# TODO Need uncommented when you added GenreModel table 
-	# genre = models.ManyToManyField('GenreModel', help_text='Выберите жанр')
+	genre = models.ManyToManyField('GenreModel', help_text='Выберите жанр')
 
 	def __str__(self):
 		return self.title
 
-class BooxInstanceModel(models.Model):
+class BookInstanceModel(models.Model):
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Уникальный идентификатор книги')
 	book = models.ForeignKey('BookModel', on_delete=models.RESTRICT, null=True)
 	imprint = models.CharField(max_length=200)
@@ -40,10 +38,25 @@ class BooxInstanceModel(models.Model):
 
 
 class GenreModel(models.Model):
+	name = models.CharField(max_length=200, help_text='Введите жанр книги')
+
+	def __str__(self):
+		return self.name
 
 
 class AuthorModel(models.Model):
-
-		
+	first_name = models.CharField(max_length=100)
+	last_name = models.CharField(max_length=100)
 	
-		
+	date_of_birth = models.DateField(null=True, blank=True)
+	date_of_death = models.DateField('Died', null=True, blank=True)
+
+	class Meta:
+		ordering = ['last_name', 'first_name']
+
+	def get_absolute_url(self):
+		return reverse('author-detail', args=[str(self.id)])
+
+	def __str__(self):
+		return f'{self.last_name}, {self.first_name}'
+	

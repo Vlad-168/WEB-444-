@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Каталог билиотеки</h1>
+
+<h2>Основной контент страницы</h2>
+<p>Количественные данные:</p>
+<ul>
+	<li><strong>Книги:</strong>{{ num_books }}</li>
+	<li><strong>Количество экземпляров книг:</strong>{{ num_instances }}</li>
+	<li><strong>Количество экземпляров книг доступных пользователю:</strong>{{ num_instances_available }}</li>
+	<li><strong>Авторы:</strong>{{ num_authors }}</li>
+</ul>
+
+<!-- {% for author in authors %}
+	<h1>{{author.name}}</h1>
+{% endfor %}	 -->
+
+{% endblock %}
