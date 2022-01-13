@@ -1,0 +1,29 @@
+{% extends "../base_generic.html" %}
+
+{% block content %}
+	{% if form.error %}
+	<p>Login and password didn't match. Please try again.</p>
+	{% endif %}
+
+	{% if next %}
+		{% if user.is_authenticated %}
+		<p>Authorized.</p>
+		{% else %}
+		<p>Please Sign in on login page</p>
+		{% endif %}
+	{% endif %}
+
+	<form method="post" action="{% url 'login' %}" align="center">
+		{% csrf_token %}
+		
+		<div class="form-group">
+	    	<label for="login">Username:</label>
+			{{ form.username }}
+		</div>
+		<div class="form-group">
+	    	<label for="pwd">Password:</label>
+			{{ form.password }}
+		</div>
+		<input type="submit" class="btn btn-default" value="LOGIN"/>
+	</form>
+{% endblock %}
