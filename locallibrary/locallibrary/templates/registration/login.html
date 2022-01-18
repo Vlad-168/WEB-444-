@@ -13,17 +13,18 @@
 		{% endif %}
 	{% endif %}
 
-	<form method="post" action="{% url 'login' %}" align="center">
-		{% csrf_token %}
-		
-		<div class="form-group">
-	    	<label for="login">Username:</label>
-			{{ form.username }}
-		</div>
-		<div class="form-group">
-	    	<label for="pwd">Password:</label>
-			{{ form.password }}
-		</div>
-		<input type="submit" class="btn btn-default" value="LOGIN"/>
-	</form>
+	<div class="login_form">
+		<form method="post" action="{% url 'login' %}" align="center">
+			{% csrf_token %}
+			<div class="form-group">
+		    	<label for="login">Username:</label>
+				{{ form.username }}
+			</div>
+			<div class="form-group">
+		    	<label for="pwd">Password:</label>
+				{{ form.password }}
+			</div>
+			<input type="submit" class="btn btn-default" value="LOGIN"/>
+		</form>
+	</div>
 {% endblock %}

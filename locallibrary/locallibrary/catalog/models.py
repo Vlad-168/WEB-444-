@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 import uuid
 
 class BookModel(models.Model):
@@ -55,7 +56,7 @@ class AuthorModel(models.Model):
 		ordering = ['last_name', 'first_name']
 
 	def get_absolute_url(self):
-		return reverse('author-detail', args=[str(self.id)])
+		return reverse('index')#, args=[str(self.id)])
 
 	def __str__(self):
 		return f'{self.last_name}, {self.first_name}'

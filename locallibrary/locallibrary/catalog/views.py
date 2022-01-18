@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import CreateView
 from .models import BookModel, BookInstanceModel, AuthorModel
 
 def index(request):
@@ -16,4 +17,8 @@ def index(request):
 			'num_instances_available': num_instances_available,
 			'num_authors': num_authors,
 		})
+
+class AuthorCreateView(CreateView):
+	model = AuthorModel
+	fields = ('first_name', 'last_name', 'date_of_birth', 'date_of_death')
 	
