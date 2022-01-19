@@ -20,5 +20,9 @@ def index(request):
 
 class AuthorCreateView(CreateView):
 	model = AuthorModel
-	fields = ('first_name', 'last_name', 'date_of_birth', 'date_of_death')
+	fields = ('__all__')
+	
+class BookCreateView(CreateView):
+	model = BookModel
+	fields = ('__all__')
 	

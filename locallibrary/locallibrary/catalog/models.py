@@ -12,6 +12,9 @@ class BookModel(models.Model):
 	def __str__(self):
 		return self.title
 
+	def get_absolute_url(self):
+		return reverse('index')
+
 class BookInstanceModel(models.Model):
 	id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Уникальный идентификатор книги')
 	book = models.ForeignKey('BookModel', on_delete=models.RESTRICT, null=True)
@@ -34,6 +37,9 @@ class BookInstanceModel(models.Model):
 	class Meta:
 		ordering=['due_back']
 
+	def get_absolute_url(self):
+		return reverse('index')
+
 	def __str__(self):
 		return f'{self.id} ({self.book.title})'
 
@@ -43,6 +49,9 @@ class GenreModel(models.Model):
 
 	def __str__(self):
 		return self.name
+
+	def get_absolute_url(self):
+		return reverse('index')
 
 
 class AuthorModel(models.Model):
