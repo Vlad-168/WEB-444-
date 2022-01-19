@@ -24,6 +24,7 @@ jobs:
     - name: Go to directory
       run: |
         cd locallibrary/locallibrary
+        ls -l
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
