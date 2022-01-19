@@ -29,4 +29,6 @@ jobs:
         pip install -r requirments.txt
     - name: Run Tests
       run: |
+        cd locallibrary/locallibrary
+        ls -l
         python manage.py test
