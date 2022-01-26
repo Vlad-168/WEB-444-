@@ -21,13 +21,14 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Go to directory
-      run: |
-        cd locallibrary/locallibrary
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
+        cd locallibrary/locallibrary
+        ls -l
         pip install -r requirments.txt
     - name: Run Tests
       run: |
+        cd locallibrary/locallibrary
+        ls -l
         python manage.py test
